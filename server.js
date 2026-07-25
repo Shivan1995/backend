@@ -8,12 +8,12 @@ app.get('/', (req, res) => {
         success: true,
         project: "Macker AI Pro",
         status: "Backend Running 🚀",
-        version: "1.0.1" 
+        version: "1.0.1"
     });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.RAILWAY_PORT || 3000;
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(Number(PORT), '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
 });
