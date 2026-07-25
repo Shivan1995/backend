@@ -1,19 +1,46 @@
-const express = require('express');
+const express = require("express");
+const OpenAI = require("openai");
+
 const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.json({
-        success: true,
-        project: "Macker AI Pro",
-        status: "Backend Running 🚀",
-        version: "1.0.3"
-    });
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-const PORT = 4730;
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    project: "Macker AI Pro",
+    status: "Backend Running 🚀"
+  });
+});
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running on port ${PORT}`);
+app.post("/chat", async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    const response = await openai.responses.create({
+      model: "gpt-4.1-mini",
+      input: message,
+    });
+
+    res.json({
+      reply: response.output_text
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "OpenAI Error"
+    });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });
