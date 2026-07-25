@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || process.env.RAILWAY_PORT || 3000;
+const PORT = process.env.PORT || process.env.RAILWAY_PORT || 4730;
 
 app.listen(Number(PORT), '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
