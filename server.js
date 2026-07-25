@@ -4,10 +4,16 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Macker AI Backend is running successfully!');
+    res.json({
+        success: true,
+        project: "Macker AI Pro",
+        status: "Backend Running 🚀",
+        version: "1.0.0"
+    });
 });
 
-const PORT = process.env.PORT || process.env.RAILWAY_PORT || 8080;
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
