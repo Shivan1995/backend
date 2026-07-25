@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
         success: true,
         project: "Macker AI Pro",
         status: "Backend Running 🚀",
-        version: "1.0.0"
+        version: "1.0.1" 
     });
 });
 
